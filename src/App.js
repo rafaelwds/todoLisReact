@@ -19,9 +19,9 @@ function App() {
             return item;
           })
         );
+        setEditItem(null);
       } else {
         setItemList([...itemList, { id: itemList.length + 1, inText }]);
-        setInText("");
       }
       setInText("");
     }
@@ -33,18 +33,15 @@ function App() {
   }
 
   function onEdit(item) {
-    console.log(item);
+    setInText(item.name);
+    setEditItem(item);
   }
 
   return (
     <div className="App">
       <h1>ToDo List</h1>
       <div className="App-header">
-        <input
-          onChange={(e) => setInText(e.target.value)}
-          value={inText}
-          placeholder="digite aqui"
-        />
+        <input value={inText} onChange={(e) => setInText(e.target.value)} />
         <button onClick={onAddList} style={{ marginLeft: 20 }}>
           Adicionar
         </button>
